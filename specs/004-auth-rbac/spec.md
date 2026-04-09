@@ -269,12 +269,14 @@ If middleware has limitations, fallback to:
 ### Cookie vs localStorage
 
 Chosen: **Cookies** (via middleware access)
+
 - Works with middleware.ts
 - HttpOnly can be false for client access
 - Automatic expiration
 - Sent with every request
 
 Alternative: localStorage
+
 - No automatic expiration
 - Can't be accessed in middleware
 - Requires client-side checks only
@@ -282,9 +284,10 @@ Alternative: localStorage
 ### Security Note
 
 This is NOT production-ready authentication:
+
 - Static credentials hardcoded in client code
 - No encryption or hashing
-- No CSRF protection  
+- No CSRF protection
 - No rate limiting
 - Suitable for learning/demo purposes only
 
