@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  
+
   const [userEmail, setUserEmail] = useState<string | null>(null);
-  const [userRole, setUserRole] = useState<'admin' | 'manager' | null>(null);
+  const [userRole, setUserRole] = useState<"admin" | "manager" | null>(null);
 
   /**
    * Helper function to get cookie value by name
@@ -18,7 +18,7 @@ export default function Sidebar() {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null;
+      return parts.pop()?.split(";").shift() || null;
     }
     return null;
   };
@@ -27,8 +27,8 @@ export default function Sidebar() {
    * Load user info from auth-token cookie on mount
    */
   useEffect(() => {
-    const authToken = getCookie('auth-token');
-    
+    const authToken = getCookie("auth-token");
+
     if (authToken) {
       try {
         const parsed = JSON.parse(authToken);
@@ -49,22 +49,28 @@ export default function Sidebar() {
    */
   const handleLogout = () => {
     // Remove auth-token cookie
-    document.cookie = 'auth-token=; path=/; max-age=0';
-    
+    document.cookie = "auth-token=; path=/; max-age=0";
+
     // Redirect to login page
-    router.push('/login');
+    router.push("/login");
   };
 
   const menuItems = [
-    { name: 'Dashboard', path: '/', icon: '📊', requiresAuth: false },
-    { name: 'Employees', path: '/employees', icon: '👥', requiresAuth: false },
-    { name: 'Departments', path: '/departments', icon: '🏢', requiresAuth: false, adminOnly: true },
+    { name: "Dashboard", path: "/", icon: "📊", requiresAuth: false },
+    { name: "Employees", path: "/employees", icon: "👥", requiresAuth: false },
+    {
+      name: "Departments",
+      path: "/departments",
+      icon: "🏢",
+      requiresAuth: false,
+      adminOnly: true,
+    },
   ];
 
   // Filter menu items based on user role
-  const visibleMenuItems = menuItems.filter(item => {
+  const visibleMenuItems = menuItems.filter((item) => {
     // If item requires admin and user is not admin, hide it
-    if (item.adminOnly && userRole !== 'admin') {
+    if (item.adminOnly && userRole !== "admin") {
       return false;
     }
     return true;
@@ -83,29 +89,32 @@ export default function Sidebar() {
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1 min-w-0">
               <p className="text-sm text-gray-400 mb-1">Logged in as</p>
-              <p className="text-sm font-medium text-white truncate" title={userEmail}>
+              <p
+                className="text-sm font-medium text-white truncate"
+                title={userEmail}
+              >
                 {userEmail}
               </p>
             </div>
           </div>
-          
+
           {/* Role Badge */}
           {userRole && (
             <div className="mt-2">
               <span
                 className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
-                  userRole === 'admin'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-green-600 text-white'
+                  userRole === "admin"
+                    ? "bg-blue-600 text-white"
+                    : "bg-green-600 text-white"
                 }`}
               >
-                {userRole === 'admin' ? 'Admin' : 'Manager'}
+                {userRole === "admin" ? "Admin" : "Manager"}
               </span>
             </div>
           )}
         </div>
       )}
-      
+
       <nav className="flex-1">
         <ul className="space-y-2">
           {visibleMenuItems.map((item) => (
@@ -114,8 +123,8 @@ export default function Sidebar() {
                 href={item.path}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   pathname === item.path
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-800'
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-300 hover:bg-gray-800"
                 }`}
               >
                 <span className="text-xl">{item.icon}</span>

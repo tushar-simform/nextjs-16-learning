@@ -202,8 +202,8 @@ export default function LoginPage() {
             </p>
             <div className="space-y-1 text-xs text-gray-600">
               <p className="text-center">
-                <span className="font-medium">Admin:</span>{" "}
-                admin@example.com / password
+                <span className="font-medium">Admin:</span> admin@example.com /
+                password
               </p>
               <p className="text-center">
                 <span className="font-medium">Manager:</span>{" "}

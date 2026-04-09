@@ -24,9 +24,7 @@ export default function UnauthorizedPage() {
           </svg>
         </div>
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Access Denied
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Access Denied</h1>
 
         <p className="text-lg text-gray-700 mb-2">
           You don&apos;t have permission to access this page

@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 /**
  * Proxy function for authentication and route protection.
  * Runs on Edge Runtime for optimal performance.
- * 
+ *
  * Protects routes:
  * - /dashboard, /employees, /departments require authentication
  * - /departments additionally requires admin role
@@ -33,28 +33,30 @@ function isAdminOnlyRoute(pathname: string): boolean {
  * Parse and validate auth token from cookie.
  * Inline implementation for Edge Runtime compatibility.
  */
-function parseAuthToken(token: string): { email: string; role: string; timestamp: number } | null {
+function parseAuthToken(
+  token: string,
+): { email: string; role: string; timestamp: number } | null {
   try {
     const parsed = JSON.parse(token);
-    
+
     // Validate token structure
     if (!parsed.email || !parsed.role || !parsed.timestamp) {
       return null;
     }
-    
+
     // Check if token is expired (24 hours = 86400000 ms)
     const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
     const age = Date.now() - parsed.timestamp;
-    
+
     if (age > TWENTY_FOUR_HOURS_MS) {
       return null;
     }
-    
+
     // Validate role
     if (parsed.role !== "admin" && parsed.role !== "manager") {
       return null;
     }
-    
+
     return parsed;
   } catch {
     return null;
@@ -83,7 +85,11 @@ export function proxy(request: NextRequest) {
   }
 
   // If route requires admin access and user is not admin, redirect to unauthorized
-  if (isAdminOnlyRoute(pathname) && isAuthenticated && parsedToken.role !== "admin") {
+  if (
+    isAdminOnlyRoute(pathname) &&
+    isAuthenticated &&
+    parsedToken.role !== "admin"
+  ) {
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 
@@ -93,10 +99,5 @@ export function proxy(request: NextRequest) {
 
 // Configure which routes should trigger the proxy
 export const config = {
-  matcher: [
-    "/dashboard",
-    "/employees",
-    "/departments",
-    "/login",
-  ],
+  matcher: ["/dashboard", "/employees", "/departments", "/login"],
 };
