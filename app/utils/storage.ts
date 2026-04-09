@@ -26,31 +26,32 @@ export const saveDepartments = (departments: Department[]): void => {
 
 export const addDepartment = (
   department: Omit<Department, "id" | "createdAt">,
-): Department => {
+): Department[] => {
   const departments = getDepartments();
   const newDepartment: Department = {
     ...department,
     id: Date.now().toString(),
     createdAt: new Date().toISOString(),
   };
-  saveDepartments([...departments, newDepartment]);
-  return newDepartment;
+  const updated = [...departments, newDepartment];
+  saveDepartments(updated);
+  return updated;
 };
 
-export const updateDepartment = (
-  id: string,
-  updates: Partial<Department>,
-): void => {
+export const updateDepartment = (department: Department): Department[] => {
   const departments = getDepartments();
   const updated = departments.map((dept) =>
-    dept.id === id ? { ...dept, ...updates } : dept,
+    dept.id === department.id ? department : dept,
   );
   saveDepartments(updated);
+  return updated;
 };
 
-export const deleteDepartment = (id: string): void => {
+export const deleteDepartment = (id: string): Department[] => {
   const departments = getDepartments();
-  saveDepartments(departments.filter((dept) => dept.id !== id));
+  const updated = departments.filter((dept) => dept.id !== id);
+  saveDepartments(updated);
+  return updated;
 };
 
 // Employee functions
