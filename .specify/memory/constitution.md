@@ -1,50 +1,63 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Employee & Department Management System Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Component Reusability
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Components must be minimal and reusable across the application; Shared UI components (forms, tables, modals) used for both Employee and Department features; Avoid duplication by creating generic, configurable components
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Local Storage First
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+All data persisted in browser localStorage as JSON; No external database or API dependencies; Data structure must support CRUD operations for Employees and Departments
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Next.js 16 & TypeScript
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Built on Next.js 16 with App Router; TypeScript for type safety across all components; Follow Next.js 16 conventions and best practices
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Tailwind CSS Styling
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All styling done via Tailwind CSS utility classes; Consistent design system with reusable style patterns; No custom CSS files except globals.css
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Simplicity & Speed
+
+No testing infrastructure required; Minimal dependencies; Fast development with focus on functionality over optimization
+
+## Technical Stack
+
+**Framework**: Next.js 16 (App Router)
+**Language**: TypeScript
+**Styling**: Tailwind CSS
+**Data Storage**: Browser localStorage (JSON)
+**Testing**: None (explicitly excluded)
+
+## Application Structure
+
+**Pages**:
+
+- Dashboard (landing page) - shows summary statistics
+- Employees - CRUD operations for employee records
+- Departments - CRUD operations for department records
+
+**Layout**:
+
+- Sidebar navigation with Dashboard, Employees, Departments menu items
+- Shared layout across all pages
+
+**Data Models**:
+
+- Employee: id, name, email, departmentId, position, salary, etc.
+- Department: id, name, description, manager, etc.
+
+## Development Guidelines
+
+**Component Strategy**: Create as few components as possible; Maximize reuse across Employee and Department pages; Generic Table, Form, and Modal components preferred
+
+**State Management**: Use React hooks (useState, useEffect) for local state; localStorage for persistence; No external state management libraries
+
+**Code Organization**: Keep related logic together; Prefer colocated utility functions; Minimize file count
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution defines the project requirements and constraints; All implementation must follow these principles; Focus on working functionality over perfect architecture
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-04-09 | **Last Amended**: 2026-04-09
