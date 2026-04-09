@@ -24,7 +24,8 @@ export default function Sidebar() {
   };
 
   /**
-   * Load user info from auth-token cookie on mount
+   * Load user info from auth-token cookie
+   * Re-check on every pathname change to update state
    */
   useEffect(() => {
     const authToken = getCookie("auth-token");
@@ -41,13 +42,21 @@ export default function Sidebar() {
         setUserEmail(null);
         setUserRole(null);
       }
+    } else {
+      // No cookie found, clear state
+      setUserEmail(null);
+      setUserRole(null);
     }
-  }, []);
+  }, [pathname]); // Re-run when pathname changes
 
   /**
-   * Handle logout: remove cookie and redirect to login
+   * Handle logout: remove cookie, clear state, and redirect to login
    */
   const handleLogout = () => {
+    // Clear state first
+    setUserEmail(null);
+    setUserRole(null);
+
     // Remove auth-token cookie
     document.cookie = "auth-token=; path=/; max-age=0";
 

@@ -6,19 +6,23 @@ import type { NextRequest } from "next/server";
  * Runs on Edge Runtime for optimal performance.
  *
  * Protects routes:
- * - /dashboard, /employees, /departments require authentication
+ * - /, /employees, /departments require authentication
  * - /departments additionally requires admin role
- * - /login redirects to /dashboard if already authenticated
+ * - /login redirects to / (dashboard) if already authenticated
  */
 
 // Define protected routes
-const protectedRoutes = ["/dashboard", "/employees", "/departments"];
+const protectedRoutes = ["/employees", "/departments"];
 const adminOnlyRoutes = ["/departments"];
 
 /**
  * Helper function to check if a route is protected
  */
 function isProtectedRoute(pathname: string): boolean {
+  // Protect root route (dashboard)
+  if (pathname === "/") {
+    return true;
+  }
   return protectedRoutes.some((route) => pathname.startsWith(route));
 }
 
@@ -76,7 +80,7 @@ export function proxy(request: NextRequest) {
 
   // If user is on /login and already authenticated, redirect to dashboard
   if (pathname === "/login" && isAuthenticated) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   // If route is protected and user is not authenticated, redirect to login
@@ -99,5 +103,5 @@ export function proxy(request: NextRequest) {
 
 // Configure which routes should trigger the proxy
 export const config = {
-  matcher: ["/dashboard", "/employees", "/departments", "/login"],
+  matcher: ["/", "/employees", "/departments", "/login"],
 };

@@ -86,7 +86,7 @@ export default function LoginPage() {
       document.cookie = `auth-token=${token}; path=/; max-age=86400; SameSite=Lax`;
 
       // Redirect to dashboard
-      router.push("/dashboard");
+      router.push("/");
     } catch {
       setGeneralError("An error occurred during login. Please try again.");
       setIsLoading(false);

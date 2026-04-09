@@ -36,7 +36,7 @@ export default function UnauthorizedPage() {
         </p>
 
         <Link
-          href="/dashboard"
+          href="/"
           className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
         >
           Return to Dashboard
