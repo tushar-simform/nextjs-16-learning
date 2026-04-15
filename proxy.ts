@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 /**
  * Proxy function for authentication and route protection.
- * Runs on Edge Runtime for optimal performance.
+ * Runs on Node Runtime for optimal performance.
  *
  * Protects routes:
  * - /, /employees, /departments require authentication
@@ -35,7 +35,7 @@ function isAdminOnlyRoute(pathname: string): boolean {
 
 /**
  * Parse and validate auth token from cookie.
- * Inline implementation for Edge Runtime compatibility.
+ * Inline implementation for Node Runtime compatibility.
  */
 function parseAuthToken(
   token: string,
