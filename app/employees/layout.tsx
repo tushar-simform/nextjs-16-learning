@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Employees | Team Management",
     description: "View and manage all employees in your organization",
-    url: "https://yourapp.com/employees",
+    url: "https://learning-nextjs-16-with-tushar.vercel.app/employees",
   },
 };
 

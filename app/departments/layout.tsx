@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Departments | Team Management",
     description: "View and manage all departments in your organization",
-    url: "https://yourapp.com/departments",
+    url: "https://learning-nextjs-16-with-tushar.vercel.app/departments",
   },
 };
 

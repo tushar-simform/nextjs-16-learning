@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${employee.name} | Team Management`,
       description: `${employee.position} at ${employee.department}`,
-      url: `https://yourapp.com/employees/${id}`,
+      url: `https://learning-nextjs-16-with-tushar.vercel.app/employees/${id}`,
       images: [
         {
           url: `/employees/${id}/avatar.png`,

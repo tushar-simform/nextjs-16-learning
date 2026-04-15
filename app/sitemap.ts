@@ -6,19 +6,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: "https://yourapp.com",
+      url: "https://learning-nextjs-16-with-tushar.vercel.app",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://yourapp.com/employees",
+      url: "https://learning-nextjs-16-with-tushar.vercel.app/employees",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: "https://yourapp.com/departments",
+      url: "https://learning-nextjs-16-with-tushar.vercel.app/departments",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,

@@ -10,7 +10,7 @@ export default function OGPreviewDemo() {
   const employeesMetadata = {
     title: "Employees | Team Management",
     description: "View and manage all employees in your organization",
-    url: "https://yourapp.com/employees",
+    url: "https://learning-nextjs-16-with-tushar.vercel.app/employees",
     image: "/og-image.png", // You can add this
   };
 
@@ -232,7 +232,7 @@ export default function OGPreviewDemo() {
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Employees | Team Management" />
   <meta property="og:description" content="View and manage all employees..." />
-  <meta property="og:url" content="https://yourapp.com/employees" />
+  <meta property="og:url" content="https://learning-nextjs-16-with-tushar.vercel.app/employees" />
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />

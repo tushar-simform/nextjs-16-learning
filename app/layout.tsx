@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yourapp.com",
+    url: "https://learning-nextjs-16-with-tushar.vercel.app",
     siteName: "Team Management System",
     title: "Team Management System",
     description:
